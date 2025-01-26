@@ -17,7 +17,15 @@
   - add search bar from Voyager
   
 */
+
 import { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+
+// Initialize Stripe with your publishable key
+const stripePromise = loadStripe(
+  process.env.VITE_STRIPE_PUBLISHABLE_KEY ||
+    import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
+);
 
 export default function Index() {
   const [loading, setLoading] = useState(false);
@@ -26,6 +34,11 @@ export default function Index() {
     setLoading(true);
 
     try {
+      const stripe = await stripePromise;
+      if (!stripe) {
+        throw new Error("Stripe could not be initialized");
+      }
+
       // Call the backend to create a checkout session
       const response = await fetch("/api/create-checkout-session", {
         method: "POST",
@@ -38,10 +51,16 @@ export default function Index() {
       }
 
       const { id } = await response.json();
-      alert(id);
 
-      // Redirect to Stripe Checkout
-      window.location.href = `https://checkout.stripe.com/pay/${id}`;
+      // Use the modal to redirect to Stripe Checkout
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: id,
+      });
+
+      if (error) {
+        console.error("Stripe Checkout error:", error);
+        alert(error.message);
+      }
     } catch (error) {
       console.error("Error during checkout:", error);
       alert("There was an error. Please try again later.");

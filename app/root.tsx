@@ -4,8 +4,9 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
-  process.env.VITE_STRIPE_PUBLISHABLE_KEY ||
-    import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
+  "pk_test_51QlbulBT3cGrIkuAztRIxWtG65qjW4ysbVe70MBoeP2ElF4tpjuREAXEzDAL1YLQ6DXfuMX9euCLeUIEhaGIXc6i00AWXeHHWY"
+  // process.env.VITE_STRIPE_PUBLISHABLE_KEY ||
+  //   import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
 );
 
 export default function Root() {
