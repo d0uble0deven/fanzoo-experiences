@@ -1,10 +1,3 @@
-import { useState } from "react";
-
-const experiences = [
-  { id: "1", name: "Basketball with Michael", athlete: "Michael Jordan" },
-  { id: "2", name: "Tennis with Serena", athlete: "Serena Williams" },
-];
-
 /*
   TODO 
   create a glider of athlete cards
@@ -24,40 +17,58 @@ const experiences = [
   - add search bar from Voyager
   
 */
+import { useState } from "react";
 
 export default function Index() {
-  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleBooking = async (experience: any) => {
-    const response = await fetch("/api/bookings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        experienceId: experience.id,
-        userId: "user123",
-        athlete: experience.athlete,
-        timestamp: new Date().toISOString(),
-      }),
-    });
+  const handleCheckout = async (experienceId: string, price: number) => {
+    setLoading(true);
 
-    if (response.ok) {
-      const data = await response.json();
-      setMessage(`Booking confirmed: ${data.id}`);
-    } else {
-      setMessage("Booking failed. Please try again.");
+    try {
+      // Call the backend to create a checkout session
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ experienceId, price }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create checkout session");
+      }
+
+      const { id } = await response.json();
+      alert(id);
+
+      // Redirect to Stripe Checkout
+      window.location.href = `https://checkout.stripe.com/pay/${id}`;
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      alert("There was an error. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
+  const experiences = [
+    { id: "1", name: "Basketball with Michael", price: 50 },
+    { id: "2", name: "Tennis with Serena", price: 100 },
+  ];
+
   return (
     <div>
-      <h1>Book an Athlete Experience</h1>
       {experiences.map((exp) => (
         <div key={exp.id}>
           <h2>{exp.name}</h2>
-          <button onClick={() => handleBooking(exp)}>Book Now</button>
+          <p>${exp.price}</p>
+          <button
+            onClick={() => handleCheckout(exp.id, exp.price)}
+            disabled={loading}
+          >
+            {loading ? "Processing..." : "Book Now"}
+          </button>
         </div>
       ))}
-      {message && <p>{message}</p>}
     </div>
   );
 }
