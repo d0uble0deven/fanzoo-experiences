@@ -1,0 +1,49 @@
+.successPage {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.successPage h1 {
+  color: #28a745;
+  margin-bottom: 10px;
+}
+
+.successPage p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.bookingTable {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+.bookingTable th,
+.bookingTable td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.bookingTable th {
+  background-color: #f8f9fa;
+}
+
+.backButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.backButton:hover {
+  background-color: #0056b3;
+}

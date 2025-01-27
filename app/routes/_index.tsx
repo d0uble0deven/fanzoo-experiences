@@ -27,7 +27,7 @@ import {
   CardElement,
 } from "@stripe/react-stripe-js";
 
-import CheckoutModal from "./CheckoutModal";
+import CheckoutModal from "../components/CheckoutModal";
 
 // Initialize Stripe with your publishable key
 const stripePromise = loadStripe(

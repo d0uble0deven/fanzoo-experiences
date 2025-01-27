@@ -16,6 +16,7 @@ export default function Root() {
         <head>
           <Meta />
           <Links />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
         </head>
         <body>
           <Outlet />

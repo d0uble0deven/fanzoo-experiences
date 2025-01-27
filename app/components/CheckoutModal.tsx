@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement } from "@stripe/react-stripe-js";
-import styles from "../CheckoutModal.module.css"; // Adjust if your CSS file has a different name
+import styles from "../styles/CheckoutModal.module.css";
 
 const stripePromise = loadStripe(
   import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ||
@@ -36,22 +36,21 @@ const CheckoutModal = ({ onClose, experience }: CheckoutModalProps) => {
     onClose(); // Close the modal
   };
 
-  // CardElement options: disabling validation feedback
   const cardElementOptions = {
     style: {
       base: {
         fontSize: "16px",
-        color: "#32325d", // Default text color
+        color: "#32325d",
         "::placeholder": {
-          color: "#aab7c4", // Placeholder color
+          color: "#aab7c4",
         },
       },
       invalid: {
-        color: "#32325d", // Neutral color to remove red error state
-        iconColor: "#32325d", // Neutral color for error icon
+        color: "#32325d",
+        iconColor: "#32325d",
       },
     },
-    hidePostalCode: true, // Hides postal code field
+    hidePostalCode: true,
   };
 
   return (
