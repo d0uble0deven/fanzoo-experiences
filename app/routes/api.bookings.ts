@@ -1,9 +1,10 @@
-import { ActionFunction } from "@remix-run/node";
-import { PutItemCommand } from "@aws-sdk/client-dynamodb";
+import { ActionFunction, LoaderFunction } from "@remix-run/node";
+import { PutItemCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
 import { dbClient } from "../../lib/awsConfig";
 
 import { randomUUID } from "crypto";
 
+// Create a new booking
 export const action: ActionFunction = async ({ request }) => {
   const body = await request.json();
   const { experienceId, userId, athlete, timestamp } = body;
@@ -47,4 +48,35 @@ export const action: ActionFunction = async ({ request }) => {
     status: 201,
     headers: { "Content-Type": "application/json" },
   });
+};
+
+// Fetch bookings
+export const loader: LoaderFunction = async () => {
+  try {
+    const data = await dbClient.send(
+      new ScanCommand({
+        TableName: "Bookings",
+      })
+    );
+
+    // Parse and format the bookings
+    const bookings = data.Items?.map((item) => ({
+      id: item.id?.S,
+      experienceId: item.experienceId?.S,
+      userId: item.userId?.S,
+      athlete: item.athlete?.S,
+      timestamp: item.timestamp?.S,
+      paymentStatus: item.paymentStatus?.S,
+    }));
+
+    console.log("Fetched bookings:", bookings);
+
+    return new Response(JSON.stringify(bookings || []), {
+      headers: { "Content-Type": "application/json" },
+      status: 200,
+    });
+  } catch (error) {
+    console.error("Error fetching bookings:", error);
+    return new Response("Failed to fetch bookings", { status: 500 });
+  }
 };

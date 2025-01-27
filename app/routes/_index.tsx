@@ -1,10 +1,3 @@
-import { useState } from "react";
-
-const experiences = [
-  { id: "1", name: "Basketball with Michael", athlete: "Michael Jordan" },
-  { id: "2", name: "Tennis with Serena", athlete: "Serena Williams" },
-];
-
 /*
   TODO 
   create a glider of athlete cards
@@ -25,39 +18,60 @@ const experiences = [
   
 */
 
+import { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import {
+  Elements,
+  useStripe,
+  useElements,
+  CardElement,
+} from "@stripe/react-stripe-js";
+
+import CheckoutModal from "../components/CheckoutModal";
+
+// Initialize Stripe with your publishable key
+const stripePromise = loadStripe(
+  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ||
+    process.env.VITE_STRIPE_PUBLISHABLE_KEY
+);
+
 export default function Index() {
-  const [message, setMessage] = useState("");
+  const [selectedExperience, setSelectedExperience] = useState<{
+    id: string;
+    price: number;
+  } | null>(null);
 
-  const handleBooking = async (experience: any) => {
-    const response = await fetch("/api/bookings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        experienceId: experience.id,
-        userId: "user123",
-        athlete: experience.athlete,
-        timestamp: new Date().toISOString(),
-      }),
-    });
+  const experiences = [
+    { id: "1", name: "Basketball with Michael", price: 50 },
+    { id: "2", name: "Tennis with Serena", price: 100 },
+  ];
 
-    if (response.ok) {
-      const data = await response.json();
-      setMessage(`Booking confirmed: ${data.id}`);
-    } else {
-      setMessage("Booking failed. Please try again.");
-    }
+  const handleBookNow = (experience: any) => {
+    setSelectedExperience(experience);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedExperience(null);
   };
 
   return (
-    <div>
-      <h1>Book an Athlete Experience</h1>
-      {experiences.map((exp) => (
-        <div key={exp.id}>
-          <h2>{exp.name}</h2>
-          <button onClick={() => handleBooking(exp)}>Book Now</button>
-        </div>
-      ))}
-      {message && <p>{message}</p>}
-    </div>
+    <Elements stripe={stripePromise}>
+      <div>
+        {experiences.map((exp) => (
+          <div key={exp.id}>
+            <h2>{exp.name}</h2>
+            <p>${exp.price}</p>
+            <button onClick={() => handleBookNow(exp)}>Book Now</button>
+          </div>
+        ))}
+      </div>
+
+      {selectedExperience && (
+        <CheckoutModal
+          onClose={handleCloseModal}
+          experience={selectedExperience}
+        />
+      )}
+    </Elements>
   );
 }

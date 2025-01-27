@@ -1,9 +1,14 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+import express from "express"; // Import Express
+import { createRequestHandler } from "@remix-run/express"; // Use Remix handler for Express
 import { ListTablesCommand } from "@aws-sdk/client-dynamodb";
 import { dbClient } from "./lib/awsConfig";
 
+const app = express(); // Create an Express app
+
+// Test DynamoDB connection
 async function testDynamoDB() {
   try {
     const data = await dbClient.send(new ListTablesCommand({}));
@@ -13,9 +18,46 @@ async function testDynamoDB() {
   }
 }
 
-app.all("*", (req, res) => {
-  console.log("Incoming Request:", req.method, req.url);
-  requestHandler(req, res);
+// Mock or fetch booking data from a database
+app.get("/api/bookings", async (req, res) => {
+  try {
+    // Simulated data (replace with your database query logic)
+    const bookings = [
+      {
+        id: "1",
+        experienceName: "Basketball with Michael",
+        price: 50,
+        date: "2025-01-24",
+      },
+      {
+        id: "2",
+        experienceName: "Tennis with Serena",
+        price: 100,
+        date: "2025-01-23",
+      },
+    ];
+
+    // Send response
+    res.json(bookings);
+  } catch (err) {
+    console.error("Error fetching bookings:", err);
+    res.status(500).json({ error: "Failed to fetch bookings" });
+  }
 });
 
-testDynamoDB();
+// Use Remix's request handler for all other routes
+app.all(
+  "*",
+  createRequestHandler({
+    getLoadContext() {
+      return {};
+    },
+  })
+);
+
+// Start the server
+const PORT = process.env.PORT || 3010;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+  testDynamoDB();
+});
