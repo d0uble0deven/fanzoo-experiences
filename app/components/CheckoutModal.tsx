@@ -14,21 +14,50 @@ interface CheckoutModalProps {
     id: string;
     name: string;
     price: number;
-    description: string;
+    description?: string;
   };
 }
 
 const CheckoutModal = ({ onClose, experience }: CheckoutModalProps) => {
   const [loading, setLoading] = useState(false);
 
-  const handlePayNow = () => {
+  const handlePayNow = async () => {
     setLoading(true);
 
-    // Simulate payment success
-    setTimeout(() => {
-      alert("Payment successful!");
-      window.location.href = "/success"; // Redirect to the success page
-    }, 1000);
+    try {
+      // Simulate payment success
+      const paymentStatus = "Success"; // Simulating a success status
+
+      // Prepare the data for DynamoDB
+      const bookingData = {
+        experienceId: experience.id,
+        userId: "test-user-id", // Replace with real user ID or use authentication context
+        athlete: experience.name,
+        timestamp: new Date().toISOString(),
+        paymentStatus,
+      };
+
+      // Make a POST request to your backend API to write to DynamoDB
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      });
+
+      if (response.ok) {
+        alert("Payment successful!");
+        window.location.href = "/success"; // Redirect to the success page
+      } else {
+        throw new Error("Failed to save booking to DynamoDB");
+      }
+    } catch (error) {
+      console.error("Error processing payment or saving booking:", error);
+      alert("An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCancel = () => {
