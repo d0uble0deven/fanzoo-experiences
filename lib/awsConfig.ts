@@ -7,6 +7,3 @@ export const dbClient = new DynamoDBClient({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || "",
 },
 });
-
-console.log("AWS AWS_ACCESS_KEY_ID:", process.env.AWS_ACCESS_KEY_ID);
-console.log("AWS AWS_SECRET_ACCESS_KEY:", process.env.AWS_SECRET_ACCESS_KEY);
