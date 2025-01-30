@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
-import CheckoutModal from "../components/CheckoutModal";
-import SportsCardGrid from "../components/SportsCardGrid";
-import Navbar from "../components/Navbar";
+import SportsCardGrid from "~/components/SportsCardGrid";
+import Navbar from "~/components/NavBar";
 import Footer from "../components/Footer";
 
 import styles from "../styles/Index.module.css";
