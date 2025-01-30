@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react";
 import { Home, Calendar } from "lucide-react";
-import styles from "../styles/Navbar.module.css";
+import styles from "../styles/NavBar.module.css";
 
 const Navbar: React.FC = () => {
   return (
