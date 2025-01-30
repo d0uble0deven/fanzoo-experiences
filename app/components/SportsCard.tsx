@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import styles from "../styles/SportsCard.module.css";
 
 interface Experience {
-  id: string;
+  experienceId: string;
   name: string;
   price: number;
 }
@@ -50,7 +50,9 @@ const SportsCard: React.FC<SportsCardProps> = ({
     );
 
   const handleExperienceChange = (experienceId: string) => {
-    const experience = sortedExperiences.find((exp) => exp.id === experienceId);
+    const experience = sortedExperiences.find(
+      (exp) => exp.experienceId === experienceId
+    );
     setSelectedExperience(experience || null);
   };
 
@@ -79,7 +81,7 @@ const SportsCard: React.FC<SportsCardProps> = ({
           <div className={styles.mediaContainer}>
             {mediaType === "image" ? (
               <img
-                src={mediaUrl || "/placeholder.svg"}
+                src={mediaUrl}
                 alt={playerName}
                 className={styles.playerMedia}
               />
@@ -108,13 +110,20 @@ const SportsCard: React.FC<SportsCardProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             {sortedExperiences.map((experience) => (
-              <label key={experience.id} className={styles.experienceItem}>
+              <label
+                key={experience.experienceId}
+                className={styles.experienceItem}
+              >
                 <input
                   type="radio"
                   name={`experience-${id}`}
-                  value={experience.id}
-                  checked={selectedExperience?.id === experience.id}
-                  onChange={() => handleExperienceChange(experience.id)}
+                  value={experience.experienceId}
+                  checked={
+                    selectedExperience?.experienceId === experience.experienceId
+                  }
+                  onChange={() =>
+                    handleExperienceChange(experience.experienceId)
+                  }
                 />
                 <span className={styles.experienceName}>{experience.name}</span>
                 <span className={styles.experiencePrice}>
