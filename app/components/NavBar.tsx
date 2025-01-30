@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
             className={styles.logo}
           >
             <img
-              src="assets/fanzoo_logo.jpg"
+              src="public/fanzoo_logo.jpg"
               // src="assets/fanzoo_logo.jpeg"
               // src="assets/FanZooLogo.png"
               alt="FanZoo Logo"

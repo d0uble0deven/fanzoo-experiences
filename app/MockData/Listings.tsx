@@ -4,7 +4,7 @@ export const ListingsMockData = [
     athletes: [
       {
         id: "nfl_001",
-        mediaUrl: "/assets/Gronkowski.webp",
+        mediaUrl: "public/Gronkowski.webp",
         mediaType: "image",
         name: "Rob Gronkowski",
         team: "New England Patriots",
@@ -27,7 +27,7 @@ export const ListingsMockData = [
       },
       {
         id: "nfl_002",
-        mediaUrl: "/assets/Brady.webp",
+        mediaUrl: "/public/Brady.webp",
         mediaType: "image",
         name: "Tom Brady",
         team: "New England Patriots",
@@ -63,7 +63,7 @@ export const ListingsMockData = [
     athletes: [
       {
         id: "ufc_001",
-        mediaUrl: "/assets/McGregor.avif",
+        mediaUrl: "/public/McGregor.avif",
         mediaType: "image",
         name: "Conor McGregor",
         division: "Lightweight",
@@ -89,7 +89,7 @@ export const ListingsMockData = [
       },
       {
         id: "ufc_002",
-        mediaUrl: "/assets/Adesanya.jpeg",
+        mediaUrl: "/public/Adesanya.jpeg",
         mediaType: "image",
         name: "Israel Adesanya",
         division: "Middleweight",
@@ -120,7 +120,7 @@ export const ListingsMockData = [
     athletes: [
       {
         id: "nba_001",
-        mediaUrl: "/assets/LeBron.jpeg",
+        mediaUrl: "/public/LeBron.jpeg",
         mediaType: "image",
         name: "LeBron James",
         team: "Los Angeles Lakers",
@@ -155,7 +155,7 @@ export const ListingsMockData = [
       },
       {
         id: "nba_002",
-        mediaUrl: "/assets/Curry.jpeg",
+        mediaUrl: "/public/Curry.jpeg",
         mediaType: "image",
         name: "Stephen Curry",
         team: "Golden State Warriors",
@@ -195,7 +195,7 @@ export const ListingsMockData = [
     athletes: [
       {
         id: "mlb_001",
-        mediaUrl: "/assets/Ohtani.jpeg",
+        mediaUrl: "/public/Ohtani.jpeg",
         mediaType: "image",
         name: "Shohei Ohtani",
         team: "Los Angeles Angels",
@@ -230,7 +230,7 @@ export const ListingsMockData = [
       },
       {
         id: "mlb_002",
-        mediaUrl: "/assets/Judge.jpeg",
+        mediaUrl: "/public/Judge.jpeg",
         mediaType: "image",
         name: "Aaron Judge",
         team: "New York Yankees",
@@ -266,7 +266,7 @@ export const ListingsMockData = [
     athletes: [
       {
         id: "wnba_001",
-        mediaUrl: "/assets/A'ja.webp",
+        mediaUrl: "/public/A'ja.webp",
         mediaType: "image",
         name: "A'ja Wilson",
         team: "Las Vegas Aces",
@@ -297,7 +297,7 @@ export const ListingsMockData = [
       },
       {
         id: "wnba_002",
-        mediaUrl: "/assets/Breanna.webp",
+        mediaUrl: "/public/Breanna.webp",
         mediaType: "image",
         name: "Breanna Stewart",
         team: "New York Liberty",
