@@ -15,29 +15,34 @@ interface CheckoutModalProps {
     name: string;
     price: number;
     description?: string;
+    athlete: string;
+    team: string;
+    position: string;
   };
 }
 
 const CheckoutModal = ({ onClose, experience }: CheckoutModalProps) => {
   const [loading, setLoading] = useState(false);
 
+  console.log("experience", experience);
+
   const handlePayNow = async () => {
     setLoading(true);
 
     try {
       // Simulate payment success
-      const paymentStatus = "Success"; // Simulating a success status
+      // const paymentStatus = "Success"; // Simulating a success status
 
       // Prepare the data for DynamoDB
       const bookingData = {
         experienceId: experience.id,
-        userId: "test-user-id", // Replace with real user ID or use authentication context
-        athlete: experience.name,
+        userId: "test-user-id", // Replace with real user ID
+        athlete: experience.athlete,
+        position: experience.position,
         timestamp: new Date().toISOString(),
-        paymentStatus,
       };
-
-      // Make a POST request to your backend API to write to DynamoDB
+      console.log("bookingData", bookingData);
+      // Make a POST request to backend API to write to DynamoDB
       const response = await fetch("/api/bookings", {
         method: "POST",
         headers: {
@@ -45,10 +50,10 @@ const CheckoutModal = ({ onClose, experience }: CheckoutModalProps) => {
         },
         body: JSON.stringify(bookingData),
       });
-
+      console.log("response", response);
       if (response.ok) {
         alert("Payment successful!");
-        window.location.href = "/success"; // Redirect to the success page
+        window.location.href = "/success";
       } else {
         throw new Error("Failed to save booking to DynamoDB");
       }
@@ -62,7 +67,7 @@ const CheckoutModal = ({ onClose, experience }: CheckoutModalProps) => {
 
   const handleCancel = () => {
     alert("Payment cancelled.");
-    onClose(); // Close the modal
+    onClose();
   };
 
   const cardElementOptions = {
@@ -83,27 +88,30 @@ const CheckoutModal = ({ onClose, experience }: CheckoutModalProps) => {
   };
 
   return (
-    <div className={styles.modalOverlay}>
-      <div className={styles.modal}>
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <h2>Complete Your Payment</h2>
 
         {/* Experience Details */}
         <div className={styles.experienceDetails}>
           <h3>{experience.name}</h3>
           <p>
-            <strong>Description:</strong> {experience.description}
-          </p>
-          <p>
             <strong>Price:</strong> ${experience.price.toFixed(2)}
           </p>
+          <hr />
           <p>
-            <strong>Experience ID:</strong> {experience.id}
+            <strong>Athlete:</strong> {experience.athlete}
+          </p>
+          <p>
+            <strong>Team:</strong> {experience.team}
+          </p>
+          <p>
+            <strong>Position:</strong> {experience.position}
           </p>
         </div>
 
         <Elements stripe={stripePromise}>
           <div className={styles.cardInput}>
-            {/* CardElement configured to avoid showing red error styles */}
             <CardElement options={cardElementOptions} />
           </div>
         </Elements>

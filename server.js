@@ -1,12 +1,12 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import express from "express"; // Import Express
-import { createRequestHandler } from "@remix-run/express"; // Use Remix handler for Express
+import express from "express";
+import { createRequestHandler } from "@remix-run/express";
 import { ListTablesCommand } from "@aws-sdk/client-dynamodb";
 import { dbClient } from "./lib/awsConfig";
 
-const app = express(); // Create an Express app
+const app = express();
 
 // Test DynamoDB connection
 async function testDynamoDB() {

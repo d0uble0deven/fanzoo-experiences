@@ -2,10 +2,11 @@ import { Meta, Links, Outlet, LiveReload, Scripts } from "@remix-run/react";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import "@fontsource/roboto";
 
 const stripePromise = loadStripe(
-  "pk_test_51QlbulBT3cGrIkuAztRIxWtG65qjW4ysbVe70MBoeP2ElF4tpjuREAXEzDAL1YLQ6DXfuMX9euCLeUIEhaGIXc6i00AWXeHHWY"
-  // import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || process.env.VITE_STRIPE_PUBLISHABLE_KEY
+  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ||
+    process.env.VITE_STRIPE_PUBLISHABLE_KEY
 );
 
 export default function Root() {

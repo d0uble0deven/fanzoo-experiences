@@ -1,0 +1,39 @@
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(
+    4,
+    minmax(250px, 1fr)
+  ); /* Ensures flexible column widths */
+  gap: 40px 60px; /* Horizontal spacing */
+  padding: 40px;
+  justify-content: center; /* Centers grid horizontally */
+  margin: 0 auto; /* Prevents cutoff */
+  max-width: 90vw; /* Keeps it within viewport */
+}
+
+@media (max-width: 1400px) {
+  .gridContainer {
+    max-width: 85vw; /* Keeps grid within view */
+  }
+}
+
+@media (max-width: 1200px) {
+  .gridContainer {
+    grid-template-columns: repeat(3, minmax(250px, 1fr)); /* 3 cards per row */
+    max-width: 80vw;
+  }
+}
+
+@media (max-width: 992px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, minmax(250px, 1fr)); /* 2 cards per row */
+    max-width: 75vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .gridContainer {
+    grid-template-columns: repeat(1, minmax(250px, 1fr)); /* 1 card per row */
+    max-width: 90vw;
+  }
+}
