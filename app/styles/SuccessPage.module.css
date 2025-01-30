@@ -1,3 +1,9 @@
+*,
+body,
+html {
+  font-family: "Roboto", sans-serif;
+}
+
 .successPage {
   text-align: center;
   padding: 20px;
@@ -8,21 +14,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  background: red;
 }
 
 .title {
-  color: #28a745;
   margin-bottom: 10px;
-
-  background: blue;
+  text-align: center;
+  width: 100%;
 }
 
 .noBookings {
   font-size: 16px;
   margin-bottom: 20px;
   color: #555;
+  text-align: center;
 }
 
 .tableContainer {
@@ -61,13 +65,18 @@
   background-color: #007bff;
   color: white;
   text-decoration: none;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .backButton:hover {

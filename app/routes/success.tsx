@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
 
+import styles from "../styles/SuccessPage.module.css";
+import "@fontsource/roboto";
+
 export default function SuccessPage() {
   const [bookings, setBookings] = useState([]);
 
@@ -24,28 +27,42 @@ export default function SuccessPage() {
   }, []);
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Payment Successful!</h1>
-      <p>Thank you for booking your experience.</p>
-
-      <h2>Your Bookings</h2>
+    <div className={{ textAlign: "center", marginTop: "50px" }}>
+      <h1 className={styles.title}>Your Bookings</h1>
       {bookings.length > 0 ? (
-        <ul>
-          {bookings.map((booking: any) => (
-            <li key={booking.id}>
-              athlete: {booking.athlete} - experienceName:{" "}
-              {booking.experienceName} - ${booking.price} - userId:{" "}
-              {booking.userId} - customerName: {booking.customerName} -
-              timestamp: {booking.timestamp}
-            </li>
-          ))}
-        </ul>
+        <div className={styles.tableContainer}>
+          <table className={styles.bookingTable}>
+            <thead>
+              <tr className={styles.bookingTableHeader}>
+                <th className={styles.bookingTableCell}>Experience</th>
+                <th className={styles.bookingTableCell}>Athlete</th>
+                <th className={styles.bookingTableCell}>Price</th>
+                <th className={styles.bookingTableCell}>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bookings.map((booking, index) => (
+                <tr
+                  key={booking.id}
+                  className={index % 2 === 0 ? styles.alternateRow : {}}
+                >
+                  <td className={styles.bookingTableCell}>
+                    {booking.experienceName}
+                  </td>
+                  <td className={styles.bookingTableCell}>{booking.athlete}</td>
+                  <td className={styles.bookingTableCell}>${booking.price}</td>
+                  <td className={styles.bookingTableCell}>{booking.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
-        <p>No bookings found.</p>
+        <p className={styles.noBookings}>No bookings found.</p>
       )}
 
       <Link to="/">
-        <button style={{ marginTop: "20px" }}>Book More Experiences</button>
+        <button className={styles.backButton}>Book More Experiences</button>
       </Link>
     </div>
   );
