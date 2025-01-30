@@ -52,9 +52,9 @@ const CheckoutModal = ({ onClose, experience }: CheckoutModalProps) => {
       });
       console.log("response", response);
       if (response.ok) {
-        alert("Payment successful!");
         window.location.href = "/success";
       } else {
+        alert("Sorry, an error occurred. Please try again.");
         throw new Error("Failed to save booking to DynamoDB");
       }
     } catch (error) {
@@ -66,7 +66,6 @@ const CheckoutModal = ({ onClose, experience }: CheckoutModalProps) => {
   };
 
   const handleCancel = () => {
-    alert("Payment cancelled.");
     onClose();
   };
 

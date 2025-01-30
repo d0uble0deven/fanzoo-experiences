@@ -34,8 +34,9 @@
   padding: 15px;
   box-sizing: border-box;
   border-radius: 10px;
-  background: white;
+  background: #ffffff; /* White background */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 3px solid #0056b3; /* Blue border */
 }
 
 .cardFront {
@@ -45,6 +46,8 @@
 .cardBack {
   transform: rotateY(180deg);
   z-index: 1;
+  background: #001f3f; /* Dark navy blue */
+  color: white;
 }
 
 /* 🔹 Media Styles */
@@ -68,6 +71,7 @@
   max-height: 250px;
   overflow-y: auto;
   text-align: center;
+  color: white;
 }
 
 .experienceItem {
@@ -77,6 +81,19 @@
   padding: 5px 10px;
   width: 100%;
   box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.experienceItem input[type="radio"] {
+  accent-color: #3498db;
+}
+
+.cardBack h3 {
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
 }
 
 .buttonContainer {
@@ -87,10 +104,15 @@
 
 .button {
   padding: 8px 16px;
-  background: #28a745;
+  background: #0056b3;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background: #003366;
 }
