@@ -10,11 +10,11 @@ export const ListingsMockData = [
         team: "New England Patriots",
         position: "Tight End",
         experiences: [
-          { experienceId: "exp_101", name: "QB Masterclass", price: 200 },
+          { experienceId: "exp_101", name: "TE Masterclass", price: 200 },
           { experienceId: "exp_102", name: "Game Film Breakdown", price: 150 },
           {
             experienceId: "exp_103",
-            name: "Throwing Mechanics 101",
+            name: "Route Running 101",
             price: 180,
           },
           { experienceId: "exp_104", name: "Virtual Chalk Talk", price: 100 },
@@ -35,12 +35,12 @@ export const ListingsMockData = [
         experiences: [
           {
             experienceId: "exp_106",
-            name: "Power Running Workshop",
+            name: "QB Masterclass",
             price: 180,
           },
           {
             experienceId: "exp_107",
-            name: "Footwork & Agility Training",
+            name: "Throwing Mechanics 101",
             price: 140,
           },
           { experienceId: "exp_108", name: "Weight Room Session", price: 200 },
@@ -51,7 +51,7 @@ export const ListingsMockData = [
           },
           {
             experienceId: "exp_110",
-            name: "1-on-1 Running Back Mentorship",
+            name: "1-on-1 QB Mentorship",
             price: 250,
           },
         ],
