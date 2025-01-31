@@ -5,12 +5,37 @@ FanZoo is a web application that allows users to book experiences with athletes.
 
 ---
 
+## **🎥 Video**
+
+Below is a demo video of the application.
+
+- [Video - Desktop](https://youtu.be/LmBuaGtzRY0)
+
+---
+
 \## Tech Stack
 
 - **Frontend:** React (Remix)
 - **Backend:** Node.js, AWS DynamoDB
 - **Payments:** Stripe API (mocked)
 - **Deployment:** Vercel
+- **Documentation:** OpenAPI
+
+---
+
+## 🔗 API Documentation
+
+FanZoo follows the **OpenAPI Specification**. The full API definition is located in the repo at:
+
+- fanzoo-experiences/openapi.json
+
+This file provides a structured API contract, including:
+
+- Endpoints (`POST /bookings`)
+- Request & response models
+- Error handling
+
+You can use tools like **Swagger UI** or **Postman** to visualize and test API requests.
 
 ---
 
@@ -28,6 +53,14 @@ FanZoo is a web application that allows users to book experiences with athletes.
 - Booking details are stored in the backend.
 - Success page displays booking details after confirmation.
 - Responsive UI for desktop, tablet, and mobile.
+
+---
+
+## **💳 Payment Information**
+
+- **Any credit card will work** – this is a mock integration.
+- Simply click **"Pay Now"** to book an experience.
+- No real payment is processed.
 
 ---
 
@@ -99,22 +132,6 @@ Creates a new booking.
 
 \### `GET /bookings`
 Retrieves all bookings.
-
----
-
-## **💳 Payment Information**
-
-- **Any credit card will work** – this is a mock integration.
-- Simply click **"Pay Now"** to book an experience.
-- No real payment is processed.
-
----
-
-## **🎥 Videos**
-
-The project supports **videos** for athlete experiences.
-
-- [Video - Desktop](https://your-vercel-deployment-url.vercel.app)
 
 ---
 
