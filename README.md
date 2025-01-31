@@ -1,6 +1,7 @@
-\# FanZoo Experiences
+# FanZoo Experiences
 
-\## Overview
+## Overview
+
 FanZoo is a web application that allows users to book experiences with athletes. The project includes a simple purchase/booking flow where a user can place an order for an athlete experience.
 
 ---
@@ -13,7 +14,7 @@ Below is a demo video of the application.
 
 ---
 
-\## Tech Stack
+## Tech Stack
 
 - **Frontend:** React (Remix)
 - **Backend:** Node.js, AWS DynamoDB
@@ -39,14 +40,15 @@ You can use tools like **Swagger UI** or **Postman** to visualize and test API r
 
 ---
 
-\## Features
-\### **Backend**
+## Features
+
+### **Backend**
 
 - `POST /Bookings`: Creates a booking record in DynamoDB.
 - Simulated payment processing with a mock Stripe API.
 - Stores booking details in a database after successful payment.
 
-\### **Frontend**
+### **Frontend**
 
 - Lists athletes and their available experiences.
 - Users can select an experience and proceed to booking.
@@ -64,22 +66,26 @@ You can use tools like **Swagger UI** or **Postman** to visualize and test API r
 
 ---
 
-\## Setup Instructions
+## Setup Instructions
 
-\### **1. Clone the Repository**
-\```
+### **1. Clone the Repository**
+
+```
 git clone https://github.com/d0uble0deven/fanzoo-experiences.git
 cd fanzoo-experiences
-\```
+```
 
-\### **2. Install Dependencies**
-\```
+### **2. Install Dependencies**
+
+```
 npm install
-\```
+```
 
-\### **3. Environment Variables**
+### **3. Environment Variables**
+
 Create a `.env` file in the project root and add:
-\```
+
+```
 AWS_ACCESS_KEY_ID=your_AWS_public_key
 AWS_SECRET_ACCESS_KEY=your_AWS_secret_key
 AWS_REGION=us-east-2
@@ -90,17 +96,21 @@ VITE_STRIPE_SECRET_KEY="your_stripe_secret_key"
 APP_URL=http://localhost:5173
 
 DYNAMODB_TABLE_NAME=Bookings
-\```
+```
 
-\### **4. Run the Project**
-\``` npm run dev
-\```
+### **4. Run the Project**
+
+```npm run dev
+
+```
+
 Then, open `http://localhost:5173/` in your browser.
 
 ---
 
-\## Folder Structure
-\```
+## Folder Structure
+
+```
 📦 fanzoo-experiences
 ├── 📂 app
 │ ├── 📂 components # UI components
@@ -113,41 +123,45 @@ Then, open `http://localhost:5173/` in your browser.
 ├── 📄 package.json # Dependencies & scripts
 ├── 📄 remix.config.js # Remix config
 └── 📄 tailwind.config.ts # Tailwind config
-\```
+```
 
 ---
 
-\## API Endpoints
+## API Endpoints
 
-\### `POST /bookings`
+### `POST /bookings`
+
 Creates a new booking.
-\```
+
+```
 {
 "experienceId": "exp_105",
 "userId": "test-user-id",
 "athlete": "Patrick Mahomes",
 "timestamp": "2025-01-30T19:24:59.634Z"
 }
-\```
+```
 
-\### `GET /bookings`
+### `GET /bookings`
+
 Retrieves all bookings.
 
 ---
 
-\## **If I Had More Time**
-\### **📱 Responsiveness**
+## **If I Had More Time**
+
+### **📱 Responsiveness**
 
 - Improve left spacing on mobile views.
 - iPad Pro has spacing issues. I wanted to use [react-glider](https://www.npmjs.com/package/react-glider) so each row would be a **glider**, but I did not have time to implement it.
 
-\### **💳 Stripe API**
+### **💳 Stripe API**
 
 - Currently, Stripe validation is turned off.
 - I would refine the integration to allow demo cards for testing.
 - I would remove the **"Link"** payment option or integrate it better into the flow.
 
-\### **🎴 Card Designs**
+### **🎴 Card Designs**
 
 - Introduce **retro sports card** and **Pokémon-style cards**.
 - Add **holographic effects**, **stats**, and **animations**.
@@ -158,14 +172,16 @@ Retrieves all bookings.
 
 ---
 
-\## Deployment
+## Deployment
+
 The project is deployed on **Vercel**.
 
 - [Live Demo](https://fanzoo-experiences-o80vaq3h7-dev94s-projects-9a098fa3.vercel.app/)
 
 ---
 
-\## Author
+## Author
+
 Developed by **[Your Name]**
 
 - GitHub: [Your GitHub](https://github.com/d0uble0deven)
