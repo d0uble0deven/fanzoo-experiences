@@ -14,6 +14,14 @@ Below is a demo video of the application.
 
 ---
 
+## Deployment
+
+The project is deployed on **Vercel**.
+
+- [Live Demo](https://fanzoo-experiences-o80vaq3h7-dev94s-projects-9a098fa3.vercel.app/)
+
+---
+
 ## Tech Stack
 
 - **Frontend:** React (Remix)
@@ -169,14 +177,6 @@ Retrieves all bookings.
   - [CSS Only: Baseball Cards](https://codepen.io/kitjenson/pen/YoLWqX?css-preprocessor=scss)
   - [Digital baseball cards for fictional players](https://codepen.io/kaisle/pen/pqxNPz)
   - [Pokemon Cards V2](https://codesandbox.io/p/github/yeswesurf/3d-css-baseball-cards/main?file=%2Fsrc%2Flib%2Fcomponents%2Fcard-shine.svelte)
-
----
-
-## Deployment
-
-The project is deployed on **Vercel**.
-
-- [Live Demo](https://fanzoo-experiences-o80vaq3h7-dev94s-projects-9a098fa3.vercel.app/)
 
 ---
 
