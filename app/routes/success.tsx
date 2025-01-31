@@ -24,15 +24,17 @@ export default function SuccessPage() {
         }
         const data = await response.json();
 
-        const formattedBookings = data.map((booking: any) => ({
-          id: booking.id || "N/A",
-          experienceId: booking.experienceId || "Unknown Experience",
-          userId: booking.userId || "Unknown User",
-          athlete: booking.athlete || "Unknown Athlete",
-          timestamp: booking.timestamp
-            ? new Date(booking.timestamp).toLocaleString()
-            : "N/A",
-        }));
+        const formattedBookings = data
+          .map((booking: any) => ({
+            id: booking.id || "N/A",
+            experienceId: booking.experienceId || "Unknown Experience",
+            userId: booking.userId || "Unknown User",
+            athlete: booking.athlete || "Unknown Athlete",
+            timestamp: booking.timestamp
+              ? new Date(booking.timestamp).toISOString()
+              : "N/A",
+          }))
+          .sort((a, b) => (b.timestamp > a.timestamp ? 1 : -1)); // Sort descending (newest first)
 
         setBookings(formattedBookings);
       } catch (error) {
@@ -71,7 +73,7 @@ export default function SuccessPage() {
                   <td className={styles.bookingTableCell}>{booking.athlete}</td>
                   <td className={styles.bookingTableCell}>{booking.userId}</td>
                   <td className={styles.bookingTableCell}>
-                    {booking.timestamp}
+                    {new Date(booking.timestamp).toLocaleString()}
                   </td>
                 </tr>
               ))}
