@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
 
-import styles from "../styles/SuccessPage.module.css";
+import styles from "../styles/BookingsPage.module.css";
 import "@fontsource/roboto";
 
 interface Booking {
@@ -12,7 +12,7 @@ interface Booking {
   timestamp: string;
 }
 
-export default function SuccessPage() {
+export default function BookingsPage() {
   const [bookings, setBookings] = useState<Booking[]>([]);
 
   useEffect(() => {

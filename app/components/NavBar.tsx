@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
           </Link>
         </li>
         <li className={styles.rightNav}>
-          <Link to="/success">
+          <Link to="/Bookings">
             {/* <Calendar className={styles.icon} /> */}
             <svg
               className={styles.icon}

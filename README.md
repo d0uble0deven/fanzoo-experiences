@@ -1,40 +1,155 @@
-# Welcome to Remix!
+\# FanZoo Experiences
 
-- 📖 [Remix docs](https://remix.run/docs)
+\## Overview
+FanZoo is a web application that allows users to book experiences with athletes. The project includes a simple purchase/booking flow where a user can place an order for an athlete experience.
 
-## Development
+---
 
-Run the dev server:
+\## Tech Stack
 
-```shellscript
-npm run dev
-```
+- **Frontend:** React (Remix)
+- **Backend:** Node.js, AWS DynamoDB
+- **Payments:** Stripe API (mocked)
+- **Deployment:** Vercel
 
-## Deployment
+---
 
-First, build your app for production:
+\## Features
+\### **Backend**
 
-```sh
-npm run build
-```
+- `POST /Bookings`: Creates a booking record in DynamoDB.
+- Simulated payment processing with a mock Stripe API.
+- Stores booking details in a database after successful payment.
 
-Then run the app in production mode:
+\### **Frontend**
 
-```sh
-npm start
-```
+- Lists athletes and their available experiences.
+- Users can select an experience and proceed to booking.
+- Booking details are stored in the backend.
+- Success page displays booking details after confirmation.
+- Responsive UI for desktop, tablet, and mobile.
 
-Now you'll need to pick a host to deploy it to.
+---
 
-### DIY
+\## Setup Instructions
 
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+\### **1. Clone the Repository**
+\```
+git clone https://github.com/d0uble0deven/fanzoo-experiences.git
+cd fanzoo-experiences
+\```
 
-Make sure to deploy the output of `npm run build`
+\### **2. Install Dependencies**
+\```
+npm install
+\```
 
-- `build/server`
-- `build/client`
+\### **3. Environment Variables**
+Create a `.env` file in the project root and add:
+\```
+AWS_ACCESS_KEY_ID=your_AWS_public_key
+AWS_SECRET_ACCESS_KEY=your_AWS_secret_key
+AWS_REGION=us-east-2
 
-## Styling
+VITE_STRIPE_PUBLISHABLE_KEY="your_stripe_public_key"
+VITE_STRIPE_SECRET_KEY="your_stripe_secret_key"
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+APP_URL=http://localhost:5173
+
+DYNAMODB_TABLE_NAME=Bookings
+\```
+
+\### **4. Run the Project**
+\``` npm run dev
+\```
+Then, open `http://localhost:5173/` in your browser.
+
+---
+
+\## Folder Structure
+\```
+📦 fanzoo-experiences
+├── 📂 app
+│ ├── 📂 components # UI components
+│ ├── 📂 routes # API routes & pages
+│ ├── 📂 styles # CSS Modules
+│ ├── 📂 MockData # Static mock data
+│ ├── 📄 entry.client.tsx # Client entry point
+│ ├── 📄 entry.server.tsx # Server entry point
+│ ├── 📄 root.tsx # Main layout & routing
+├── 📄 package.json # Dependencies & scripts
+├── 📄 remix.config.js # Remix config
+└── 📄 tailwind.config.ts # Tailwind config
+\```
+
+---
+
+\## API Endpoints
+
+\### `POST /bookings`
+Creates a new booking.
+\```
+{
+"experienceId": "exp_105",
+"userId": "test-user-id",
+"athlete": "Patrick Mahomes",
+"timestamp": "2025-01-30T19:24:59.634Z"
+}
+\```
+
+\### `GET /bookings`
+Retrieves all bookings.
+
+---
+
+## **💳 Payment Information**
+
+- **Any credit card will work** – this is a mock integration.
+- Simply click **"Pay Now"** to book an experience.
+- No real payment is processed.
+
+---
+
+## **🎥 Videos**
+
+The project supports **videos** for athlete experiences.
+
+- [Video - Desktop](https://your-vercel-deployment-url.vercel.app)
+
+---
+
+\## **If I Had More Time**
+\### **📱 Responsiveness**
+
+- Improve left spacing on mobile views.
+- iPad Pro has spacing issues. I wanted to use [react-glider](https://www.npmjs.com/package/react-glider) so each row would be a **glider**, but I did not have time to implement it.
+
+\### **💳 Stripe API**
+
+- Currently, Stripe validation is turned off.
+- I would refine the integration to allow demo cards for testing.
+- I would remove the **"Link"** payment option or integrate it better into the flow.
+
+\### **🎴 Card Designs**
+
+- Introduce **retro sports card** and **Pokémon-style cards**.
+- Add **holographic effects**, **stats**, and **animations**.
+- Found inspiration from:
+  - [CSS Only: Baseball Cards](https://codepen.io/kitjenson/pen/YoLWqX?css-preprocessor=scss)
+  - [Digital baseball cards for fictional players](https://codepen.io/kaisle/pen/pqxNPz)
+  - [Pokemon Cards V2](https://codesandbox.io/p/github/yeswesurf/3d-css-baseball-cards/main?file=%2Fsrc%2Flib%2Fcomponents%2Fcard-shine.svelte)
+
+---
+
+\## Deployment
+The project is deployed on **Vercel**.
+
+- [Live Demo](https://fanzoo-experiences-o80vaq3h7-dev94s-projects-9a098fa3.vercel.app/)
+
+---
+
+\## Author
+Developed by **[Your Name]**
+
+- GitHub: [Your GitHub](https://github.com/d0uble0deven)
+- LinkedIn: [Your LinkedIn](https://linkedin.com/in/DevGovindji)

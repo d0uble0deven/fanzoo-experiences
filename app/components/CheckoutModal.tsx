@@ -52,7 +52,7 @@ const CheckoutModal = ({ onClose, experience }: CheckoutModalProps) => {
       });
       console.log("response", response);
       if (response.ok) {
-        window.location.href = "/success";
+        window.location.href = "/Bookings";
       } else {
         alert("Sorry, an error occurred. Please try again.");
         throw new Error("Failed to save booking to DynamoDB");
